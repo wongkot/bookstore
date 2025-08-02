@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { AfterViewInit, Component, Input, output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 	templateUrl: './store-owner-selection.html',
 	styleUrl: './store-owner-selection.sass'
 })
-export class StoreOwnerSelection {
+export class StoreOwnerSelection implements AfterViewInit {
+	@Input() initialValue: string = '';
 	ownerChanged = output<string>();
 	public ownerSelectionForm: FormGroup;
 
@@ -15,6 +16,12 @@ export class StoreOwnerSelection {
 		this.ownerSelectionForm = this.fb.group({
 			owner: '',
 		});
+	}
+
+	ngAfterViewInit(): void {
+		if (this.initialValue) {
+			this.ownerSelectionForm.get('owner')?.setValue(this.initialValue);
+		}
 	}
 
 	public onOwnerChange() {

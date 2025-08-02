@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { AfterViewInit, Component, Input, output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 	templateUrl: './search-bar.html',
 	styleUrl: './search-bar.sass'
 })
-export class SearchBar {
+export class SearchBar implements AfterViewInit {
+	@Input() initialValue: string = '';
 	textChanged = output<string>();
 	public searchForm: FormGroup;
 
@@ -15,6 +16,12 @@ export class SearchBar {
 		this.searchForm = this.fb.group({
 			searchText: '',
 		});
+	}
+
+	ngAfterViewInit(): void {
+		if (this.initialValue) {
+			this.searchForm.get('searchText')?.setValue(this.initialValue);
+		}
 	}
 
 	public onSubmit(): void {

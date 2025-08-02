@@ -32,6 +32,18 @@ export class BookstoreStateService {
 		return this._displayBooks.asReadonly();
 	}
 
+	public get sortBy() {
+		return this._sortBy.asReadonly();
+	}
+
+	public get searchKeyword() {
+		return this._searchKeyword.asReadonly();
+	}
+
+	public get selectStoreOwner() {
+		return this._selectStoreOwner.asReadonly();
+	}
+
 	public onSortChange(newSort: string): void {
 		if (this._sortBy() == newSort) {
 			return;

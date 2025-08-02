@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SortSelection implements AfterViewInit {
 	@Input() options!: KeyValue<string, string>[];
+	@Input() initialValue: string = '';
 
 	selectionChanged = output<string>();
 	public selectionForm: FormGroup;
@@ -23,7 +24,8 @@ export class SortSelection implements AfterViewInit {
 	ngAfterViewInit(): void {
 		// Set dropdown value to first item by default
 		if (this.options?.length > 0) {
-			this.selectionForm.get('prop')?.setValue(this.options[0].key);
+			const findIndex = this.options.findIndex(kv => kv.key == this.initialValue);
+			this.selectionForm.get('prop')?.setValue(findIndex < 0 ? this.options[0].key : this.initialValue);
 		}
 	}
 
