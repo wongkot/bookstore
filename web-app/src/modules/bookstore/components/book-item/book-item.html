@@ -1,13 +1,18 @@
 <div class="card border-secondary h-100">
-    <div class="card-header text-end">{{ storeOwner ? storeOwner + '\'s Store' : '' }}</div>
+    <div class="card-header text-end">
+        {{ storeOwner ? storeOwner + '\'s Store' : '' }}
+        <i [class]="styleStoreColor()"></i>
+    </div>
     <div class="card-body h-100">
-        <h4 class="card-title text-truncate" [title]="author">
-            <i class="bi bi-pen-fill"></i>
-            {{ author }}
-        </h4>
-        <p class="card-text"><span class="fw-bold">Title: </span>{{ title }}</p>
+        <p class="card-text fw-bold">{{ title }}</p>
     </div>
     <div class="card-footer">
+        <div class="row mb-3">
+            <p class="card-text text-start text-truncate" [title]="author">
+                <i class="bi bi-pen-fill"></i>
+                {{ " " + author }}
+            </p>
+        </div>
         <div class="row d-flex align-items-center">
             <div class="col-6">
                 <button type="button" class="btn btn-dark py-1">Buy</button>

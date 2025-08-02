@@ -11,4 +11,22 @@ export class BookItem {
 	@Input() author?: string;
 	@Input() price?: number;
 	@Input() storeOwner?: string;
+
+	public styleStoreColor(): string {
+		let styleClasses = [
+			'bi',
+			'bi-book-fill',
+		];
+
+		switch (this.storeOwner) {
+			case 'Peter':
+				styleClasses.push('text-success');
+				break;
+			case 'Greta':
+				styleClasses.push('text-info');
+				break;
+		}
+
+		return styleClasses.join(' ');
+	}
 }
