@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBar } from './components/search-bar/search-bar';
-import { SortSelection } from './components/sort-selection/sort-selection';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchBar } from '@app/shared/components/search-bar/search-bar';
+import { SortSelection } from '@app/shared/components/sort-selection/sort-selection';
 
 @NgModule({
 	declarations: [

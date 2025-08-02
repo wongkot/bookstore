@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { Bookstore } from '@app/modules/bookstore/pages/bookstore/bookstore';
-import { BookList } from './components/book-list/book-list';
-import { BookItem } from './components/book-item/book-item';
-import { SharedModule } from 'shared/shared-module';
-import { StoreOwnerSelection } from './components/store-owner-selection/store-owner-selection';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { BookItem } from '@app/modules/bookstore/components/book-item/book-item';
+import { BookList } from '@app/modules/bookstore/components/book-list/book-list';
+import { StoreOwnerSelection } from '@app/modules/bookstore/components/store-owner-selection/store-owner-selection';
+import { Bookstore } from '@app/modules/bookstore/pages/bookstore/bookstore';
+import { SharedModule } from '@app/shared/shared-module';
 
 const ROUTES: Routes = [
 	{ path: '', pathMatch: 'full', component: Bookstore },
