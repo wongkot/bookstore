@@ -50,6 +50,15 @@ export class BookstoreStateService {
 		this._displayBooks.set(this.filterAndSortBooks(this._books));
 	}
 
+	public onStoreOwnerChange(newStoreOwner: string): void {
+		if (this._selectStoreOwner() == newStoreOwner) {
+			return;
+		}
+		
+		this._selectStoreOwner.set(newStoreOwner);
+		this._displayBooks.set(this.filterAndSortBooks(this._books));
+	}
+
 	/**
 	 * Load all books from the datasource
 	 */
@@ -71,9 +80,16 @@ export class BookstoreStateService {
 	}
 
 	private filterAndSortBooks(books: Book[]): Book[] {
-		return [...books].filter(book => {
+		return [...books]
+		.filter(book => {
 			if (this._searchKeyword()) {
 				return book.title.includes(this._searchKeyword());
+			}
+			return true;
+		})
+		.filter(book => {
+			if (this._selectStoreOwner()) {
+				return book.storeOwner ? book.storeOwner.includes(this._selectStoreOwner()) : false;
 			}
 			return true;
 		})

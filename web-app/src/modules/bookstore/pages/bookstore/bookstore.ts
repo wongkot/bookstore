@@ -27,4 +27,8 @@ export class Bookstore {
 	onSearchChanged(value: string) {
 		this.bookstoreStateService.onSearchKeywordChange(value);
 	}
+
+	onOwnerChange(value: string) {
+		this.bookstoreStateService.onStoreOwnerChange(value);
+	}
 }

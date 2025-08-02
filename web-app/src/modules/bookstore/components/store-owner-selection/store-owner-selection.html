@@ -1,0 +1,10 @@
+<form [formGroup]="ownerSelectionForm">
+       <div class="btn-group" role="group">
+              <input type="radio" class="btn-check" id="btnradio1" value="" formControlName="owner" (change)="onOwnerChange()">
+              <label class="btn btn-outline-primary" for="btnradio1">All</label>
+              <input type="radio" class="btn-check" id="btnradio2" value="Peter" formControlName="owner" (change)="onOwnerChange()">
+              <label class="btn btn-outline-primary" for="btnradio2">Peter</label>
+              <input type="radio" class="btn-check" id="btnradio3" value="Greta" formControlName="owner" (change)="onOwnerChange()">
+              <label class="btn btn-outline-primary" for="btnradio3">Greta</label>
+       </div>
+</form>

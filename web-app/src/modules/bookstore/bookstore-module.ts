@@ -5,6 +5,8 @@ import { Bookstore } from '@app/modules/bookstore/pages/bookstore/bookstore';
 import { BookList } from './components/book-list/book-list';
 import { BookItem } from './components/book-item/book-item';
 import { SharedModule } from 'shared/shared-module';
+import { StoreOwnerSelection } from './components/store-owner-selection/store-owner-selection';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const ROUTES: Routes = [
 	{ path: '', pathMatch: 'full', component: Bookstore },
@@ -14,12 +16,14 @@ const ROUTES: Routes = [
 	declarations: [
 		Bookstore,
   		BookList,
-    	BookItem
+    	BookItem,
+     	StoreOwnerSelection,
 	],
 	imports: [
 		RouterModule.forChild(ROUTES),
 		CommonModule,
 		SharedModule,
+		ReactiveFormsModule,
 	]
 })
 export class BookstoreModule { }
