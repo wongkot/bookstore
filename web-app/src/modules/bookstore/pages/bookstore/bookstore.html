@@ -1,3 +1,14 @@
 <div class="container">
-    <app-book-list></app-book-list>
+    <div class="row my-2">
+        <div class="col-md-4 my-2">
+            <app-sort-selection (selectionChanged)="onSortChanged($event)" [options]="sortOptions"></app-sort-selection>
+        </div>
+        <div class="col-md-4 my-2"></div>
+        <div class="col-md-4 my-2">
+            <app-search-bar (textChanged)="onSearchChanged($event)"></app-search-bar>
+        </div>
+    </div>
+    <div class="row">
+        <app-book-list></app-book-list>
+    </div>
 </div>

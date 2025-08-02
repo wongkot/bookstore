@@ -1,7 +1,6 @@
+import { KeyValue } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { BookstoreService } from '@app/modules/bookstore/services/bookstore-service';
 import { BookstoreStateService } from '@app/modules/bookstore/services/bookstore-state-service';
-import { MockBookstoreService } from '@app/modules/bookstore/services/mock-bookstore-service';
 
 @Component({
 	selector: 'app-bookstore',
@@ -11,7 +10,21 @@ import { MockBookstoreService } from '@app/modules/bookstore/services/mock-books
 })
 export class Bookstore {
 	public bookstoreStateService: BookstoreStateService;
+	public sortOptions: KeyValue<string, string>[] = [
+		{ key: 'title', value: 'Title' },
+		{ key: 'price', value: 'Price' },
+		{ key: 'author', value: 'Author' },
+	];
+
 	constructor() {
 		this.bookstoreStateService = inject(BookstoreStateService);
+	}
+
+	onSortChanged(value: string) {
+		this.bookstoreStateService.onSortChange(value);
+	}
+
+	onSearchChanged(value: string) {
+		this.bookstoreStateService.onSearchKeywordChange(value);
 	}
 }

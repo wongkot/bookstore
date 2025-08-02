@@ -1,0 +1,8 @@
+<form [formGroup]="selectionForm">
+    <select class="form-select"
+            formControlName="prop"
+            (change)="onSelectionChanged()">
+        <option *ngFor="let option of options"
+                [value]="option.key">{{ option.value }}</option>
+    </select>
+</form>
