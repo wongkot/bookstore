@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Bookstore } from './pages/bookstore/bookstore';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Bookstore } from '@app/modules/bookstore/pages/bookstore/bookstore';
 
 const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', component: Bookstore  },
+	{ path: '', pathMatch: 'full', component: Bookstore },
 ];
 
 @NgModule({
-  declarations: [
-    Bookstore
-  ],
-  imports: [
-    RouterModule.forChild(ROUTES),
-    CommonModule
-  ]
+	declarations: [
+		Bookstore
+	],
+	imports: [
+		RouterModule.forChild(ROUTES),
+		CommonModule
+	]
 })
 export class BookstoreModule { }

@@ -1,3 +1,5 @@
 <div class="container">
     <p>Display every books from bookstore</p>
+    <p>Is Loading: {{ bookstoreStateService.isLoading() ? 'Yes' : 'No' }}</p>
+    <p>Books: {{ bookstoreStateService.displayBooks() | json}}</p>
 </div>
