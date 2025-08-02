@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Bookstore } from '@app/modules/bookstore/pages/bookstore/bookstore';
+import { BookList } from './components/book-list/book-list';
+import { BookItem } from './components/book-item/book-item';
 
 const ROUTES: Routes = [
 	{ path: '', pathMatch: 'full', component: Bookstore },
@@ -9,7 +11,9 @@ const ROUTES: Routes = [
 
 @NgModule({
 	declarations: [
-		Bookstore
+		Bookstore,
+  		BookList,
+    	BookItem
 	],
 	imports: [
 		RouterModule.forChild(ROUTES),
