@@ -1,36 +1,50 @@
 ﻿using API.Modules.Bookstore.Models;
+using API.Modules.Bookstore.Repositories;
+using API.Modules.Bookstore.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Modules.Bookstore.Controllers
 {
     [ApiController]
-    [Route("api/BookOrders")]
+    [Route("api/v1/book-orders")]
     public class BookOrderController : Controller
     {
-        private static readonly string[] BookTitles = new[]
+        private readonly IBookOrderService bookOrderService;
+
+        public BookOrderController(IBookOrderService bookOrderService)
         {
-            "Cracking the PM Interview: How to Land a Product Manager Job in Technology (Cracking the Interview & Career)",
-            "Fluent Python: Clear, Concise, and Effective Programming",
-            "Software Engineering for Absolute Beginners: Your Guide to Creating Software Products",
-            "The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change",
-            "The Staff Engineer's Path: A Guide for Individual Contributors Navigating Growth and Change",
-        };
+            this.bookOrderService = bookOrderService;
+        }
 
         /// <summary>
         /// Get all book orders.
         /// </summary>
         /// <returns>List of all book orders.</returns>
         [HttpGet]
-        public IEnumerable<BookOrder> Get()
+        public async Task<IEnumerable<BookOrder>> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new BookOrder
-            {
-                OrderNo = $"BO-{(new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds()) + index}",
-                Title = BookTitles[Random.Shared.Next(BookTitles.Length)],
-                Store = "Peter",
-                Price = Random.Shared.Next(100, 200)
-            })
-            .ToArray();
+            return await bookOrderService.GetAllBookOrdersAsync();
+        }
+
+        /// <summary>
+        /// Create book order.
+        /// </summary>
+        /// <returns>List of all book orders.</returns>
+        [HttpPost]
+        public async Task<BookOrder> Create([FromBody]CreateBookOrder createBookOrder)
+        {
+            return await bookOrderService.CreateBookOrderAsync(createBookOrder);
+        }
+
+        /// <summary>
+        /// Remove all book orders.
+        /// </summary>
+        /// <returns>List of all book orders.</returns>
+        [HttpDelete]
+        [Route("all")]
+        public async Task<string> RemoveAll()
+        {
+            return await bookOrderService.RemoveAllBookOrdersAsync();
         }
     }
 }

@@ -1,3 +1,6 @@
+using API.Configurations;
+using API.Modules.Bookstore.Repositories;
+using API.Modules.Bookstore.Services;
 using System.Reflection;
 
 namespace API
@@ -17,6 +20,12 @@ namespace API
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+            builder.Services.AddScoped<IBookOrderRepository, MongoCloudBookOrderRepository>();
+            builder.Services.AddScoped<IBookOrderService, MongoCloudBookOrderService>();
+
+            // Register configuration options
+            builder.Services.Configure<ConnectionStringsOptions>(builder.Configuration.GetSection(ConnectionStringsOptions.ConnectionStrings));
+            builder.Services.Configure<AppConfigOptions>(builder.Configuration.GetSection(AppConfigOptions.AppConfig));
 
             var app = builder.Build();
 
