@@ -14,16 +14,15 @@ export class BookItem {
 
 	public styleStoreColor(): string {
 		let styleClasses = [
-			'bi',
-			'bi-book-fill',
+			'badge',
 		];
 
 		switch (this.storeOwner) {
 			case 'Peter':
-				styleClasses.push('text-success');
+				styleClasses.push('bg-success');
 				break;
 			case 'Greta':
-				styleClasses.push('text-info');
+				styleClasses.push('bg-info');
 				break;
 		}
 
