@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Book } from '@app/modules/bookstore/models/book';
 import { ApiBookstoreService } from '@app/modules/bookstore/services/api-bookstore-service';
-import { ApiMockBookstoreService } from '@app/modules/bookstore/services/api-mock-bookstore-service';
 import { BookstoreService } from '@app/modules/bookstore/services/bookstore-service';
 import { finalize } from 'rxjs';
 
@@ -22,7 +21,7 @@ export class BookstoreStateService {
 	private _books: Book[] = [];
 
 	constructor() {
-		this._bookStoreService = inject(ApiMockBookstoreService);
+		this._bookStoreService = inject(ApiBookstoreService);
 		this.loadAllBooks();
 	}
 
@@ -44,6 +43,10 @@ export class BookstoreStateService {
 
 	public get selectStoreOwner() {
 		return this._selectStoreOwner.asReadonly();
+	}
+
+	public get errorMessage() {
+		return this._errorMessage.asReadonly();
 	}
 
 	public onSortChange(newSort: string): void {
@@ -71,6 +74,10 @@ export class BookstoreStateService {
 		
 		this._selectStoreOwner.set(newStoreOwner);
 		this._displayBooks.set(this.filterAndSortBooks(this._books));
+	}
+
+	public clearErrorMessage(): void {
+		this._errorMessage.set('');
 	}
 
 	/**

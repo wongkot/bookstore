@@ -31,4 +31,8 @@ export class Bookstore {
 	onOwnerChange(value: string) {
 		this.bookstoreStateService.onStoreOwnerChange(value);
 	}
+
+	onClearErrorMessage() {
+		this.bookstoreStateService.clearErrorMessage();
+	}
 }

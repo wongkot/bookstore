@@ -33,6 +33,10 @@ export class BookOrderStateService {
 		return this._totalPrice;
 	}
 
+	public get errorMessage() {
+		return this._errorMessage.asReadonly();
+	}
+
     public createOrder(createOrder: CreateBookOrder) {
 		this._isLoading.set(true);
 		this._errorMessage.set('');
@@ -64,6 +68,10 @@ export class BookOrderStateService {
 				this._errorMessage.set(error);
 			}
 		});
+	}
+
+	public clearErrorMessage(): void {
+		this._errorMessage.set('');
 	}
 
     private loadAllBookOrders(): void {

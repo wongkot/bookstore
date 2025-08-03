@@ -17,4 +17,8 @@ export class BookOrders {
 	public onRemoveAllOrdersClick(): void {
 		this.bookOrderStateService.removeAllOrder();
 	}
+
+	onClearErrorMessage() {
+		this.bookOrderStateService.clearErrorMessage();
+	}
 }
