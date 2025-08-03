@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,9 @@ const ROUTES: Routes = [
 		CommonModule,
 		SharedModule,
 		ReactiveFormsModule,
+	],
+	providers: [
+		provideHttpClient(),
 	]
 })
 export class BookstoreModule { }

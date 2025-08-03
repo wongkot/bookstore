@@ -25,6 +25,17 @@ namespace API
             builder.Services.AddScoped<IBookstoreRepository, MockBookstoreRepository>();
             builder.Services.AddScoped<IBookstoreService, BookstoreService>();
 
+            // Add CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Allow Angular Application", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
+
             // Register configuration options
             builder.Services.Configure<ConnectionStringsOptions>(builder.Configuration.GetSection(ConnectionStringsOptions.ConnectionStrings));
             builder.Services.Configure<AppConfigOptions>(builder.Configuration.GetSection(AppConfigOptions.AppConfig));
@@ -45,6 +56,9 @@ namespace API
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
+
+            // Use CORS policy
+            app.UseCors("Allow Angular Application");
 
             app.Run();
         }

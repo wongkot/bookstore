@@ -41,7 +41,7 @@ export class BookItem {
 		let createBookOrder: CreateBookOrder = {
 			title: this.title!,
 			price: this.price!,
-			storeOwner: this.storeOwner!,
+			store: this.storeOwner!,
 		};
 		this._bookOrderStateService.createOrder(createBookOrder);
 	}

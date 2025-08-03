@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BookOrder } from '@app/modules/bookstore/models/book-order';
 import { CreateBookOrder } from '@app/modules/bookstore/models/create-book-order';
+import { ApiBookOrderService } from '@app/modules/bookstore/services/api-book-order-service';
 import { BookOrderService } from '@app/modules/bookstore/services/book-order-service';
-import { MockBookOrderService } from '@app/modules/bookstore/services/mock-book-order-service';
 import { finalize } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class BookOrderStateService {
 	private _bookOrderService: BookOrderService;
 
 	constructor() {
-		this._bookOrderService = inject(MockBookOrderService);
+		this._bookOrderService = inject(ApiBookOrderService);
 		this.loadAllBookOrders();
 	}
 
@@ -52,6 +52,7 @@ export class BookOrderStateService {
 	public removeAllOrder() {
 		this._isLoading.set(true);
 		this._errorMessage.set('');
+
         this._bookOrderService.removeAllBookOrders().pipe(
 			finalize(() => this._isLoading.set(false)),
 		).subscribe({

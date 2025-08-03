@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Book } from '@app/modules/bookstore/models/book';
+import { ApiBookstoreService } from '@app/modules/bookstore/services/api-bookstore-service';
+import { ApiMockBookstoreService } from '@app/modules/bookstore/services/api-mock-bookstore-service';
 import { BookstoreService } from '@app/modules/bookstore/services/bookstore-service';
-import { MockBookstoreService } from '@app/modules/bookstore/services/mock-bookstore-service';
 import { finalize } from 'rxjs';
 
 @Injectable({
@@ -20,7 +22,7 @@ export class BookstoreStateService {
 	private _books: Book[] = [];
 
 	constructor() {
-		this._bookStoreService = inject(MockBookstoreService);
+		this._bookStoreService = inject(ApiMockBookstoreService);
 		this.loadAllBooks();
 	}
 
@@ -83,10 +85,10 @@ export class BookstoreStateService {
 		).subscribe({
 			next: books => {
 				this._books = books;
-				this._displayBooks.set(this.filterAndSortBooks(this._books));
+				this._displayBooks.set(this.filterAndSortBooks(books));
 			},
-			error: (error: string) => {
-				this._errorMessage.set(error);
+			error: (error: HttpErrorResponse) => {
+				this._errorMessage.set(error.error);
 			}
 		});
 	}
@@ -110,10 +112,10 @@ export class BookstoreStateService {
 				case 'price':
 					return book1.price - book2.price;
 				case 'author':
-					return book1.author.localeCompare(book2.author);
+					return book1.author?.localeCompare(book2.author);
 				case 'title':
 				default:
-					return book1.title.localeCompare(book2.title);
+					return book1.title?.localeCompare(book2.title);
 			}
 		});
 	}
