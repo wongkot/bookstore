@@ -22,4 +22,8 @@ export class MockBookOrderService implements BookOrderService {
         
         return of(newBookOrder);
     }
+
+    removeAllBookOrders(): Observable<string> {
+        return of('All book order has been removed.');
+    }
 }

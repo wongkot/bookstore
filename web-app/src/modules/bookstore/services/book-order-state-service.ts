@@ -49,6 +49,22 @@ export class BookOrderStateService {
 		});
     }
 
+	public removeAllOrder() {
+		this._isLoading.set(true);
+		this._errorMessage.set('');
+        this._bookOrderService.removeAllBookOrders().pipe(
+			finalize(() => this._isLoading.set(false)),
+		).subscribe({
+			next: () => {
+				this._bookOrders.set([]);
+				this._totalPrice.set(0);
+			},
+			error: (error: string) => {
+				this._errorMessage.set(error);
+			}
+		});
+	}
+
     private loadAllBookOrders(): void {
 		this._isLoading.set(true);
 		this._errorMessage.set('');

@@ -1,4 +1,17 @@
 <div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" routerLink="">
+                <i class="bi bi-arrow-left pe-1"></i>
+                Back
+            </button>
+        </div>
+        <div *ngIf="bookOrderStateService.bookOrders().length > 0" class="col-6 d-flex flex-row justify-content-end">
+            <button type="button" class="btn btn-danger" (click)="onRemoveAllOrdersClick()">
+                Remove All
+            </button>
+        </div>
+    </div>
     <div *ngIf="bookOrderStateService.bookOrders().length > 0; else noBookOrder" class="table-responsive">
         <table class="table table-hover w-100">
             <thead>

@@ -13,4 +13,8 @@ export class BookOrders {
 	constructor() {
 		this.bookOrderStateService = inject(BookOrderStateService);
 	}
+
+	public onRemoveAllOrdersClick(): void {
+		this.bookOrderStateService.removeAllOrder();
+	}
 }

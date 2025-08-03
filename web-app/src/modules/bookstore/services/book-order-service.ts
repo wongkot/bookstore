@@ -5,4 +5,5 @@ import { CreateBookOrder } from "@app/modules/bookstore/models/create-book-order
 export interface BookOrderService {
     getAllBookOrders(): Observable<BookOrder[]>;
     createBookOrder(createOrder: CreateBookOrder): Observable<BookOrder>;
+    removeAllBookOrders(): Observable<string>;
 }
