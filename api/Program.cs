@@ -21,7 +21,9 @@ namespace API
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
             builder.Services.AddScoped<IBookOrderRepository, MongoCloudBookOrderRepository>();
-            builder.Services.AddScoped<IBookOrderService, MongoCloudBookOrderService>();
+            builder.Services.AddScoped<IBookOrderService, BookOrderService>();
+            builder.Services.AddScoped<IBookstoreRepository, MockBookstoreRepository>();
+            builder.Services.AddScoped<IBookstoreService, BookstoreService>();
 
             // Register configuration options
             builder.Services.Configure<ConnectionStringsOptions>(builder.Configuration.GetSection(ConnectionStringsOptions.ConnectionStrings));

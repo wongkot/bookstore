@@ -4,11 +4,11 @@ using MongoDB.Bson;
 
 namespace API.Modules.Bookstore.Services
 {
-    public class MongoCloudBookOrderService : IBookOrderService
+    public class BookOrderService : IBookOrderService
     {
         private readonly IBookOrderRepository bookOrderRepository;
 
-        public MongoCloudBookOrderService(IBookOrderRepository bookOrderRepository)
+        public BookOrderService(IBookOrderRepository bookOrderRepository)
         {
             this.bookOrderRepository = bookOrderRepository;
         }
