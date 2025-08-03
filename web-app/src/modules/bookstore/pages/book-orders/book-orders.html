@@ -1,3 +1,32 @@
-<div class="container">
-    <p>book-orders works!</p>
+<div class="container mt-4">
+    <div *ngIf="bookOrderStateService.bookOrders().length > 0; else noBookOrder" class="table-responsive">
+        <table class="table table-hover w-100">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Order No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Store</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of bookOrderStateService.bookOrders()">
+                    <th scope="row" class="text-nowrap">{{ order.orderNo }}</th>
+                    <td>{{ order.title }}</td>
+                    <td class="text-nowrap">{{ order.storeOwner }}</td>
+                    <td class="text-nowrap">{{ order.price | number }} $</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="table-info">
+                    <th scope="row" colspan="3">Total Price</th>
+                    <td colspan="1">{{ bookOrderStateService.totalPrice() | number }} $</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <ng-template #noBookOrder>
+        <h1 class="text-center">No order has been made.</h1>
+        <p class="lead text-center">Why not browse our store and order some books?</p>
+    </ng-template>
 </div>

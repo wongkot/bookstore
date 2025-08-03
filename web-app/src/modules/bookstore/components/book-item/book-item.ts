@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { CreateBookOrder } from '@app/modules/bookstore/models/create-book-order';
+import { BookOrderStateService } from '@app/modules/bookstore/services/book-order-state-service';
 
 @Component({
 	selector: 'app-book-item',
@@ -11,6 +13,12 @@ export class BookItem {
 	@Input() author?: string;
 	@Input() price?: number;
 	@Input() storeOwner?: string;
+
+	private _bookOrderStateService: BookOrderStateService;
+
+	constructor() {
+		this._bookOrderStateService = inject(BookOrderStateService);
+	}
 
 	public styleStoreColor(): string {
 		let styleClasses = [
@@ -27,5 +35,14 @@ export class BookItem {
 		}
 
 		return styleClasses.join(' ');
+	}
+
+	public onBuyClick() {
+		let createBookOrder: CreateBookOrder = {
+			title: this.title!,
+			price: this.price!,
+			storeOwner: this.storeOwner!,
+		};
+		this._bookOrderStateService.createOrder(createBookOrder);
 	}
 }

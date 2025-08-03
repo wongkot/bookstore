@@ -12,7 +12,7 @@
             <div class="col-md-6 col-xs-12 d-flex justify-content-md-end g-md-0 ms-md-0">
                 <a class="navbar-brand nav-link me-0"
                     routerLink="/orders">
-                    Orders (0)
+                    Orders ({{ bookOrderStateService.bookOrders().length }})
                 </a>
             </div>
         </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { BookOrderStateService } from '@app/modules/bookstore/services/book-order-state-service';
 
 @Component({
 	selector: 'app-nav-bar',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
 	styleUrl: './nav-bar.sass'
 })
 export class NavBar {
+	public bookOrderStateService: BookOrderStateService;
 
+	constructor() {
+		this.bookOrderStateService = inject(BookOrderStateService);
+	}
 }
