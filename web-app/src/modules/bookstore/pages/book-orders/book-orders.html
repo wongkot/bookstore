@@ -15,7 +15,7 @@
             </button>
         </div>
     </div>
-    <div *ngIf="bookOrderStateService.bookOrders().length > 0; else noBookOrder" class="table-responsive">
+    <div *ngIf="bookOrderStateService.bookOrders().length > 0" class="table-responsive">
         <table class="table table-hover w-100">
             <thead>
                 <tr class="table-primary">
@@ -41,8 +41,11 @@
             </tfoot>
         </table>
     </div>
-    <ng-template #noBookOrder>
+    <div class="row" *ngIf="bookOrderStateService.isLoading()">
+        <h3 class="text-center">Fetching data...</h3>
+    </div>
+    <div class="row" *ngIf="!bookOrderStateService.isLoading() && bookOrderStateService.bookOrders().length <= 0">
         <h1 class="text-center">No order has been made.</h1>
         <p class="lead text-center">Why not browse our store and order some books?</p>
-    </ng-template>
+    </div>
 </div>

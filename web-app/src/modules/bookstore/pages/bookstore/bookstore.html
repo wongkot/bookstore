@@ -13,6 +13,9 @@
             <app-search-bar (textChanged)="onSearchChanged($event)" [initialValue]="bookstoreStateService.searchKeyword()"></app-search-bar>
         </div>
     </div>
+    <div class="row" *ngIf="bookstoreStateService.isLoading()">
+        <h3 class="text-center">Fetching data...</h3>
+    </div>
     <div class="row">
         <app-book-list></app-book-list>
     </div>
