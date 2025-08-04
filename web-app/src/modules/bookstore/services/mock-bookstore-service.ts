@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from '@app/modules/bookstore/models/book';
 import { BookstoreService } from '@app/modules/bookstore/services/bookstore-service';
-import { combineLatest, map, Observable, of } from 'rxjs';
+import { combineLatest, delay, map, Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -50,6 +50,7 @@ export class MockBookstoreService implements BookstoreService {
 				books.forEach(b => b.storeOwner = 'Peter');
 				return books;
 			}),
+			delay(500),
 		);
 	}
 

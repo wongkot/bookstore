@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { BookOrder } from '@app/modules/bookstore/models/book-order';
 import { CreateBookOrder } from '@app/modules/bookstore/models/create-book-order';
 import { BookOrderService } from '@app/modules/bookstore/services/book-order-service';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class MockBookOrderService implements BookOrderService {
     getAllBookOrders(): Observable<BookOrder[]> {
-        return of([]);
+        return of([]).pipe(delay(500));
     }
 
     createBookOrder(createOrder: CreateBookOrder): Observable<BookOrder> {
@@ -19,7 +19,7 @@ export class MockBookOrderService implements BookOrderService {
             price: createOrder.price,
             store: createOrder.store,
         }
-        
+
         return of(newBookOrder);
     }
 
