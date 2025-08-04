@@ -104,7 +104,7 @@ export class BookstoreStateService {
 		return [...books]
 		.filter(book => {
 			if (this._searchKeyword()) {
-				return book.title.includes(this._searchKeyword());
+				return book.name.includes(this._searchKeyword());
 			}
 			return true;
 		})
@@ -122,7 +122,7 @@ export class BookstoreStateService {
 					return book1.author?.localeCompare(book2.author);
 				case 'title':
 				default:
-					return book1.title?.localeCompare(book2.title);
+					return book1.name?.localeCompare(book2.name);
 			}
 		});
 	}

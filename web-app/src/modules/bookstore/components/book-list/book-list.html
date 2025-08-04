@@ -1,7 +1,7 @@
 <div class="row">
     <div *ngFor="let book of bookstoreStateService.displayBooks()"
          class="col-lg-3 col-md-4 col-sm-6 col-xs-1 mb-3">
-        <app-book-item [title]="book.title"
+        <app-book-item [title]="book.name"
                        [author]="book.author"
                        [price]="book.price"
                        [storeOwner]="book.storeOwner">

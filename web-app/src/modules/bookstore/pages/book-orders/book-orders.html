@@ -29,7 +29,7 @@
                 <tr *ngFor="let order of bookOrderStateService.bookOrders()">
                     <th scope="row" class="text-nowrap">{{ order.orderNo }}</th>
                     <td>{{ order.title }}</td>
-                    <td class="text-nowrap">{{ order.storeOwner }}</td>
+                    <td class="text-nowrap">{{ order.store }}</td>
                     <td class="text-nowrap">{{ order.price | number }} $</td>
                 </tr>
             </tbody>

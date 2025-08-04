@@ -17,7 +17,7 @@ export class MockBookOrderService implements BookOrderService {
             orderNo: "BO-" + Date.now().toString(),
             title: createOrder.title,
             price: createOrder.price,
-            storeOwner: createOrder.store,
+            store: createOrder.store,
         }
         
         return of(newBookOrder);
