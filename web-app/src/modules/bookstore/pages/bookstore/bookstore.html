@@ -6,7 +6,7 @@
         <div class="col-md-3 my-2">
             <app-sort-selection (selectionChanged)="onSortChanged($event)" [options]="sortOptions" [initialValue]="bookstoreStateService.sortBy()"></app-sort-selection>
         </div>
-        <div class="col-md-6 d-flex flex-row justify-content-md-center my-2">
+        <div class="col-md-6 d-flex flex-row justify-content-center my-2">
             <app-store-owner-selection (ownerChanged)="onOwnerChange($event)" [initialValue]="bookstoreStateService.selectStoreOwner()"></app-store-owner-selection>
         </div>
         <div class="col-md-3 my-2">
